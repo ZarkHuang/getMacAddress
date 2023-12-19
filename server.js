@@ -10,7 +10,7 @@ app.get('/get-mac-address', (req, res) => {
         if (error) {
             return res.status(500).send('getmac有誤!');
         }
-        const decodedOutput = iconv.decode(stdout, 'cp950'); //轉繁體
+        const decodedOutput = iconv.decode(stdout, 'cp950'); //iconv為了讓亂碼可以轉中文繁體
         const matches = decodedOutput.match(/實體位址[\s\S]*?([-\w]{17})/g);
         if (matches) {
             const macAddresses = matches.map(item => item.match(/([-\w]{17})/)[0]);
