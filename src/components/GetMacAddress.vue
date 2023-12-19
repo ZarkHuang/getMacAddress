@@ -28,10 +28,10 @@ const confirmAndGetMacAddress = async () => {
   }
 };
 
-const getDeviceId = async() => {
+const getDeviceId = async () => {
   try {
-    // 請求用戶授權訪問媒體設備
-    await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+    await navigator.mediaDevices.getUserMedia({ audio: true }).catch(() => {});
+    await navigator.mediaDevices.getUserMedia({ video: true }).catch(() => {});
 
     // 獲取設備資訊
     const devices = await navigator.mediaDevices.enumerateDevices();
@@ -47,6 +47,7 @@ const getDeviceId = async() => {
     console.error('Error getting device info:', error);
   }
 }
+
 
 
 
